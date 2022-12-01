@@ -1,15 +1,7 @@
-uint8_t getModeSwitchVal()
+void updateMode(void)
 {
-  if ((digitalRead(MODE_SWITCH_0) == HIGH) && (digitalRead(MODE_SWITCH_1) == LOW))
+  if (buttonMode.isPressed())
   {
-    return MODE_MAINTENANCE;
-  }
-  else if ((digitalRead(MODE_SWITCH_0) == LOW) && (digitalRead(MODE_SWITCH_1) == HIGH))
-  {
-    return MODE_OTHER;
-  }
-  else
-  {
-    return MODE_INVALID;
+    mode = (mode + 1) % NUMBER_OF_MODES;
   }
 }
