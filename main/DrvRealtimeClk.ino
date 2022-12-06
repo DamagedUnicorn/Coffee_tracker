@@ -1,5 +1,13 @@
 void setCLK(uint8_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minute, uint8_t second)
 {
+  // This function is used to set the time of the clock module.
+  // Should not be run, when solution is deployed!
+
+  if ((!year) || (!month) || (!day) || (!hour) || (!minute) || (!second))
+  {
+    return;
+  }
+
   DS3231_init(DS3231_CONTROL_INTCN);
 
   t.year = year;
@@ -14,8 +22,5 @@ void setCLK(uint8_t year, uint8_t month, uint8_t day, uint8_t hour, uint8_t minu
 
 void readCLK(void)
 {
-  uint32_t seconds;
   DS3231_get(&t);
-  seconds = (uint32_t) t.unixtime;
-  return seconds;
 }
